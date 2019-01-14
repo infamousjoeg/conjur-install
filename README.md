@@ -1,5 +1,5 @@
 # infamousjoeg/conjur-install
-Home of the script that lives at `conjur.cybr.rocks`!
+Home of the script that lives at `https://cybr.rocks/conjur-install`!
 
 The purpose of the install script is for a convenience for quickly
 installing the latest Docker-CE releases, Docker Compose releases, and Conjur on the supported linux
@@ -12,9 +12,9 @@ This repository is solely maintained by Joe Garcia, CISSP. It is not officially 
 
 ## Usage:
 
-From `https://conjur.cybr.rocks`:
+From `https://cybr.rocks/conjur-install`:
 ```shell
-curl -fsSL https://conjur.cybr.rocks | bash -s
+curl -fsSL https://cybr.rocks/conjur-install | bash -s
 ```
 
 From the source repo:
