@@ -131,6 +131,8 @@ report_info () {
     echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo -e "${NC}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${NC}"
     sudo docker ps
+    echo -e "Interact with it via Conjur CLI on \"${USER}\"_client_1: ${CYAN}sudo docker exec -it client bash${NC}"
+    echo -e "Once connected check your user: ${CYAN}conjur authn whoami"
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
 }
 
