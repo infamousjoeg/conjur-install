@@ -62,10 +62,11 @@ download_conjur () {
 
 generate_masterkey () {
     # Generate a secure master key for Conjur
-    sudo docker-compose run --no-deps --rm conjur data-key generate > data_key
+    sudo docker-compose run --no-deps --rm conjur data-key generate | sudo tee data_key > /dev/null
     DATA_KEY="$(< data_key)"
     sed -e "s#CONJUR_DATA_KEY:#CONJUR_DATA_KEY: ${DATA_KEY}#" docker-compose.yml > docker-compose-new.yml
     mv -f docker-compose-new.yml docker-compose.yml
+    export CONJUR_DATA_KEY="${DATA_KEY}"
     rm -rf data_key
 }
 
@@ -100,14 +101,16 @@ report_info () {
     RED='\033[0;31m'
     YELLOW='\033[1;33m'
     NC='\033[0m' # No Color
+    set +x
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
     echo -e "${RED}SAVE THESE VALUES IN A SAFE PLACE!${NC}"
-    echo -e "${CYAN}Conjur Data Key:${NC} ${CONJUR_DATA_KEY}"
-    echo -e "${CYAN}Conjur Public SSL Certificate & Admin API Key:${NC}"
+    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
+    echo -e "${CYAN}Conjur Data Key:${NC} ${YELLOW}${CONJUR_DATA_KEY}${NC}"
+    echo -e "${CYAN}Conjur Public SSL Certificate & Admin API Key:${YELLOW}"
     echo -e "${CONJUR_INFO}"
-    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
-    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
-    echo -e "${YELLOW}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${NC}"
+    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo -e "${YELLOW}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${YELLOW}"
     sudo docker ps
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
 }
