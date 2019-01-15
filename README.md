@@ -10,7 +10,7 @@ instructions](https://conjur.org).
 
 This repository is solely maintained by Joe Garcia, CISSP. It is not officially supported by CyberArk.
 
-## Usage:
+## Usage
 
 From `https://cybr.rocks/conjur-install`:
 ```shell
@@ -28,7 +28,11 @@ From the source repo:
 ./install.sh
 ```
 
-## Reporting security issues
+### Video of Usage
+
+[![asciicast](https://asciinema.org/a/221614.svg)](https://asciinema.org/a/221614)
+
+## Reporting Security Issues
 
 The maintainer takes security seriously. If you discover a security issue,
 please bring it to my attention right away!
