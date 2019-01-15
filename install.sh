@@ -24,9 +24,9 @@ main () {
 
 update_yumapt () {
     # Check if yum or apt is installed; Update whichever is
-    if [ "$(command -v yum)" -eq 0 ]; then
+    if [ "$(command -v yum)" ]; then
         sudo yum update -y
-    elif [ "$(command -v apt)" -eq 0 ]; then
+    elif [ "$(command -v apt)" ]; then
         sudo apt update && sudo apt upgrade -y
     else
         RED='\033[0;31m'
@@ -42,7 +42,7 @@ install_docker () {
         sudo usermod a+G docker "${USER}"
         newgrp docker
     fi
-}
+}   
 
 install_dockercompose () {
     # Check if Docker Compose is installed
