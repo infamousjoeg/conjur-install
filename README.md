@@ -17,6 +17,12 @@ From `https://cybr.rocks/conjur-install`:
 curl -fsSL https://cybr.rocks/conjur-install | bash -s
 ```
 
+To review the output script first:
+```shell
+curl -fsSL https://cybr.rocks/conjur-install -o conjur-install.sh
+./conjur-install.sh
+```
+
 From the source repo:
 ```shell
 ./install.sh
