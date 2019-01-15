@@ -37,7 +37,7 @@ update_yumapt () {
 
 install_docker () {
     # Check if Docker CE is installed
-    if [ -n "$(command -v docker)" ]; then
+    if [ -x "$(command -v docker)" ]; then
         # Install Docker CE
         sudo curl -fsSL https://get.docker.com | sh
         sudo usermod a+G docker "${USER}"
@@ -47,7 +47,7 @@ install_docker () {
 
 install_dockercompose () {
     # Check if Docker Compose is installed
-    if [ -n "$(command -v docker-compose)" ]; then
+    if [ -x "$(command -v docker-compose)" ]; then
         # Install Docker Compose
         sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
