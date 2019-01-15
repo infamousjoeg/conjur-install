@@ -18,6 +18,7 @@ main () {
     download_conjur
     generate_masterkey
     start_conjur
+    sleep 8
     conjur_createacct
     report_info
 }
