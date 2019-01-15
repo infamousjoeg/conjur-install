@@ -10,9 +10,9 @@ set -eou pipefail
 #       before executing.
 
 main () {
+    update_yumapt
     install_docker
     install_dockercompose
-    update_yumapt
     download_conjur
     generate_masterkey
     start_conjur
