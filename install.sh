@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eou pipefail
+set -eoux pipefail
 
 # This script is meant for quick & easy install via:
 #   $ curl -fsSL https://conjur.cybr.rocks | bash -s
