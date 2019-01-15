@@ -10,16 +10,8 @@ set -eou pipefail
 #       before executing.
 
 main () {
-    # Check for Docker CE; Install if not found
-    if [ "$(detect_docker)" -eq 1 ]; then
-        install_docker
-    fi
-
-    # Check for Docker Compose; Install if not found
-    if [ "$(detect_dockercompose)" -eq 1 ]; then
-        install_dockercompose
-    fi
-
+    install_docker
+    install_dockercompose
     update_yumapt
     download_conjur
     generate_masterkey
