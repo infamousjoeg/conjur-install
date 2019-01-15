@@ -20,6 +20,8 @@ main () {
     start_conjur
     sleep 8
     conjur_createacct
+    conjur_init
+    conjur_authn
     report_info
 }
 
