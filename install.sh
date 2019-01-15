@@ -30,7 +30,8 @@ update_yumapt () {
         sudo apt update && sudo apt upgrade -y
     else
         RED='\033[0;31m'
-        echo -e "${RED}Package Manager yum or apt not found. Please contribute to https://github.com/infamousjoeg/conjur-install for your distribution of choice."
+        NC='\033[0m' # No Color
+        echo -e "${RED}Package Manager yum or apt not found. Please contribute to https://github.com/infamousjoeg/conjur-install for your distribution of choice.${NC}"
     fi
 }
 
@@ -98,12 +99,12 @@ report_info () {
     RED='\033[0;31m'
     YELLOW='\033[1;33m'
     NC='\033[0m' # No Color
-    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo -e "${YELLOW}Below is your ${CYAN}Conjur Data Key${YELLOW}, ${CYAN}Conjur Public SSL Certificate${YELLOW}, and ${CYAN}Admin API Key"
-    echo -e "${RED}SAVE THESE VALUES IN A SAFE PLACE!"
+    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
+    echo -e "${YELLOW}Below is your ${CYAN}Conjur Data Key${YELLOW}, ${CYAN}Conjur Public SSL Certificate${YELLOW}, and ${CYAN}Admin API Key${NC}"
+    echo -e "${RED}SAVE THESE VALUES IN A SAFE PLACE!${NC}"
     echo -e "${CYAN}Conjur Data Key:${NC} ${CONJUR_DATA_KEY}"
     echo "${CONJUR_INFO}"
-    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
 }
 
 main "$@"
