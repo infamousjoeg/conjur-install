@@ -100,7 +100,7 @@ conjur_createacct () {
 
 conjur_init () {
     # Initialize Conjur
-    API_KEY=$(echo "${CONJUR_INFO}" | awk 'FNR == 11 {print $5}')
+    API_KEY=$(echo "${CONJUR_INFO}" | awk 'FNR == 10 {print $5}')
     export CONJUR_API_KEY="${API_KEY}"
     set -x
     sudo docker exec -i "${USER}"_client_1 conjur init -u conjur -a quick-start 
@@ -110,7 +110,7 @@ conjur_init () {
 conjur_authn () {
     # Login to Conjur from CLI (Client) container for Admin user
     set -x
-    sudo docker exec -i "${USER}"_client_1 conjur authn login -u admin -p "${CONJUR_API_KEY}"
+    sudo docker exec -i "${USER}"_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
     set +x
 }
 
