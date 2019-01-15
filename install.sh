@@ -112,7 +112,7 @@ report_info () {
     echo -e "${CONJUR_INFO}"
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo -e "${YELLOW}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${YELLOW}"
+    echo -e "${NC}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${NC}"
     sudo docker ps
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
 }
