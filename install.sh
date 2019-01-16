@@ -103,7 +103,7 @@ start_conjur () {
 
 conjur_createacct () {
     # Configure Conjur & create account
-    CONJUR_INFO=$(docker exec -i root_conjur_1 conjurctl account create quick-start)
+    CONJUR_INFO=$(docker exec -i "${USER}"_conjur_1 conjurctl account create quick-start)
     export CONJUR_INFO="${CONJUR_INFO}"
 }
 
@@ -112,14 +112,14 @@ conjur_init () {
     API_KEY=$(echo "${CONJUR_INFO}" | awk 'FNR == 10 {print $5}')
     export CONJUR_API_KEY="${API_KEY}"
     set -x
-    docker exec -i root_client_1 conjur init -u conjur -a quick-start 
+    docker exec -i "${USER}"_client_1 conjur init -u conjur -a quick-start 
     set +x
 }
 
 conjur_authn () {
     # Login to Conjur from CLI (Client) container for Admin user
     set -x
-    docker exec -i root_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
+    docker exec -i "${USER}"_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
     set +x
 }
 
@@ -141,7 +141,7 @@ report_info () {
     echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo -e "${NC}Your Conjur environment is running in Docker: ${CYAN}sudo docker ps${NC}"
     sudo docker ps
-    echo -e "Interact with it via Conjur CLI on root_client_1: ${CYAN}sudo docker exec -it client bash${NC}"
+    echo -e "Interact with it via Conjur CLI on \"${USER}\"_client_1: ${CYAN}sudo docker exec -it client bash${NC}"
     echo -e "Once connected check your user: ${CYAN}conjur authn whoami"
     echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++${NC}"
 }
