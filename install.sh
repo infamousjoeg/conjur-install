@@ -33,7 +33,7 @@ update_yumapt () {
         set +x
     elif [ "$(command -v apt)" ]; then
         set -x
-        sudo apt update && apt upgrade -y
+        sudo apt update && sudo apt upgrade -y
         set +x
     else
         RED='\033[0;31m'
