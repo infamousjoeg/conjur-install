@@ -50,6 +50,11 @@ install_docker () {
         sudo curl -fsSL https://get.docker.com | sh
         sudo usermod -aG docker "${USER}"
         set +x
+        if [ "$(command -v yum)" ]; then
+            set -x
+            sudo systemctl start docker
+            set +x
+        fi
     fi
 }
 
