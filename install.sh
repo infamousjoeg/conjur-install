@@ -12,7 +12,10 @@ set -e pipefail
 #            $ ./conjur-install.sh
 
 main () {
-    #sudo -i
+    if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+        echo "Try again using sudo or as root. curl -fsSL https://cybr.rocks/conjur-install | sudo bash -s"
+        exit
+    fi
     update_yumapt
     install_docker
     install_dockercompose
@@ -30,11 +33,11 @@ update_yumapt () {
     # Check if yum or apt is installed; Update whichever is
     if [ "$(command -v yum)" ]; then
         set -x
-        sudo yum update -y
+        yum update -y
         set +x
     elif [ "$(command -v apt)" ]; then
         set -x
-        sudo apt update && sudo apt upgrade -y
+        apt update && apt upgrade -y
         set +x
     else
         RED='\033[0;31m'
@@ -48,12 +51,12 @@ install_docker () {
     if [ -z "$(command -v docker)" ]; then
         # Install Docker CE
         set -x
-        sudo curl -fsSL https://get.docker.com | sh
-        sudo usermod -aG docker "${USER}"
+        curl -fsSL https://get.docker.com | sh
+        usermod -aG docker "${USER}"
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
-            sudo systemctl start docker
+            systemctl start docker
             set +x
         fi
     fi
@@ -64,8 +67,8 @@ install_dockercompose () {
     if [ -z  "$(command -v docker-compose)" ]; then
         # Install Docker Compose
         set -x
-        sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
+        curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
         set +x
     fi
 }
@@ -73,7 +76,7 @@ install_dockercompose () {
 download_conjur () {
     # Download Conjur & pull Docker Images necessary
     set -x
-    sudo curl -o docker-compose.yml https://www.conjur.org/get-started/docker-compose.quickstart.yml
+    curl -o docker-compose.yml https://www.conjur.org/get-started/docker-compose.quickstart.yml
     docker-compose pull
     set +x
 }
@@ -100,7 +103,7 @@ start_conjur () {
 
 conjur_createacct () {
     # Configure Conjur & create account
-    CONJUR_INFO=$(sudo docker exec -i "${USER}"_conjur_1 conjurctl account create quick-start)
+    CONJUR_INFO=$(docker exec -i "${USER}"_conjur_1 conjurctl account create quick-start)
     export CONJUR_INFO="${CONJUR_INFO}"
 }
 
@@ -109,14 +112,14 @@ conjur_init () {
     API_KEY=$(echo "${CONJUR_INFO}" | awk 'FNR == 10 {print $5}')
     export CONJUR_API_KEY="${API_KEY}"
     set -x
-    sudo docker exec -i "${USER}"_client_1 conjur init -u conjur -a quick-start 
+    docker exec -i "${USER}"_client_1 conjur init -u conjur -a quick-start 
     set +x
 }
 
 conjur_authn () {
     # Login to Conjur from CLI (Client) container for Admin user
     set -x
-    sudo docker exec -i "${USER}"_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
+    docker exec -i "${USER}"_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
     set +x
 }
 
