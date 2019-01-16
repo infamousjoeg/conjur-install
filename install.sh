@@ -122,7 +122,6 @@ conjur_authn () {
 }
 
 report_info () {
-    exit
     # Report to STDOUT all pertinent info for Conjur
     CYAN='\033[0;36m'
     GREEN='\033[0;32m'
