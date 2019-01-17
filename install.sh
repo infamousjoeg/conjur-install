@@ -53,7 +53,7 @@ install_docker () {
         if [ "$(command -v yum)" ]; then
             set -x
             sudo systemctl start docker
-            newgrp docker
+            su "${USER}" -c "newgrp docker"
             set +x
         fi
     fi
