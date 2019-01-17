@@ -52,7 +52,7 @@ install_docker () {
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
-            systemctl start docker
+            sudo systemctl start docker
             set +x
         fi
     fi
