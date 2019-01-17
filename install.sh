@@ -47,7 +47,7 @@ install_docker () {
     if [ -z "$(command -v docker)" ]; then
         # Install Docker CE
         set -x
-        sudo curl -fsSL https://get.docker.com | sudo sh
+        curl -fsSL https://get.docker.com | sh
         sudo usermod -aG docker "${USER}"
         set +x
         if [ "$(command -v yum)" ]; then
