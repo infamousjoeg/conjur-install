@@ -52,8 +52,8 @@ install_docker () {
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
+            export DOCKER_HOST=127.0.0.1:2375
             sudo systemctl start docker
-            su "${USER}" -c "newgrp docker"
             set +x
         fi
     fi
@@ -66,6 +66,7 @@ install_dockercompose () {
         set -x
         sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
+        sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
         set +x
     fi
 }
@@ -74,14 +75,14 @@ download_conjur () {
     # Download Conjur & pull Docker Images necessary
     set -x
     sudo curl -o docker-compose.yml https://www.conjur.org/get-started/docker-compose.quickstart.yml
-    docker-compose pull
+    sudo docker-compose pull
     set +x
 }
 
 generate_masterkey () {
     # Generate a secure master key for Conjur
     set -x
-    docker-compose run --no-deps --rm conjur data-key generate > data_key
+    sudo docker-compose run --no-deps --rm conjur data-key generate | sudo tee data_key > /dev/null
     set +x
     DATA_KEY="$(< data_key)"
     sed -e "s#CONJUR_DATA_KEY:#CONJUR_DATA_KEY: ${DATA_KEY}#" docker-compose.yml > docker-compose-new.yml
@@ -93,14 +94,14 @@ generate_masterkey () {
 start_conjur () {
     # Spin up Docker containers for Conjur
     set -x
-    docker-compose up -d
+    sudo docker-compose up -d
     set +x
     rm -rf docker-compose.yml
 }
 
 conjur_createacct () {
     # Configure Conjur & create account
-    CONJUR_INFO=$(sudo docker exec -i ${USER}_conjur_1 conjurctl account create quick-start)
+    CONJUR_INFO=$(sudo docker exec -i "${USER}"_conjur_1 conjurctl account create quick-start)
     export CONJUR_INFO="${CONJUR_INFO}"
 }
 
@@ -109,14 +110,14 @@ conjur_init () {
     API_KEY=$(echo "${CONJUR_INFO}" | awk 'FNR == 10 {print $5}')
     export CONJUR_API_KEY="${API_KEY}"
     set -x
-    sudo docker exec -i ${USER}_client_1 conjur init -u conjur -a quick-start 
+    sudo docker exec -i "${USER}"_client_1 conjur init -u conjur -a quick-start 
     set +x
 }
 
 conjur_authn () {
     # Login to Conjur from CLI (Client) container for Admin user
     set -x
-    sudo docker exec -i ${USER}_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
+    sudo docker exec -i "${USER}"_client_1 conjur authn login -u admin <<< "${CONJUR_API_KEY}"
     set +x
 }
 
