@@ -52,7 +52,6 @@ install_docker () {
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
-            export DOCKER_HOST=127.0.0.1:2375
             sudo systemctl start docker
             set +x
         fi
