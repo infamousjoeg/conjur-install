@@ -30,7 +30,13 @@ From the source repo:
 
 ### Video of Usage
 
+#### Ubuntu 18.04
+
 [![asciicast](https://asciinema.org/a/221614.svg)](https://asciinema.org/a/221614)
+
+#### CentOS 7
+
+[![asciicast](https://asciinema.org/a/222131.svg)](https://asciinema.org/a/222131)
 
 ## Reporting Security Issues
 
