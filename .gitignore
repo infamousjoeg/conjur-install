@@ -1,0 +1,3 @@
+tests/test*
+tests/scp_update.*
+*.retry

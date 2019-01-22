@@ -1,0 +1,24 @@
+- hosts: localhost
+  connection: local
+
+  vars:
+    pip_install_packages:
+      - name: docker
+    docker_edition: 'ce'
+    docker_package_state: present
+    docker_service_state: started
+    docker_service_enabled: yes
+    docker_restart_handler_state: restarted
+    docker_users:
+      - "{{ lookup('env','USER') }}"
+    docker_install_compose: yes
+
+  roles:
+    - { role: geerlingguy.pip, become: yes }
+    - { role: geerlingguy.docker, become: yes }
+
+  tasks:
+    - name: Run busybox Docker Container for Testing
+      docker_container:
+        name: test-busybox
+        image: busybox
