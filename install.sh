@@ -73,7 +73,7 @@ install_dockercompose () {
 download_conjur () {
     # Download Conjur & pull Docker Images necessary
     set -x
-    sudo curl -o docker-compose.yml https://www.conjur.org/get-started/docker-compose.quickstart.yml
+    sudo curl -o docker-compose.yml https://raw.githubusercontent.com/infamousjoeg/conjur-install/master/docker-compose.yml
     sudo docker-compose pull
     set +x
 }
