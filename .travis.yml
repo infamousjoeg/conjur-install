@@ -1,6 +1,6 @@
 language: bash
 
 env:
-  - USER=travis
+  - USER=conjur-install
 
 script: bash install.sh
