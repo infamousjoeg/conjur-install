@@ -96,6 +96,10 @@ start_conjur () {
     sudo docker-compose up -d
     set +x
     rm -rf docker-compose.yml
+    # Wait for Conjur container to report healthy status
+    until [ "$(/usr/bin/docker inspect -f {{.State.Health.Status}} ${USER}_conjur_1)" == "healthy" ]; do
+        sleep 0.1;
+    done;
 }
 
 conjur_createacct () {
