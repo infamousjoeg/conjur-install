@@ -1,3 +1,6 @@
 language: bash
 
+env:
+  - USER=travis
+
 script: bash install.sh
