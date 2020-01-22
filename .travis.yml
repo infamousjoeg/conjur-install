@@ -1,6 +1,0 @@
-language: bash
-
-env:
-  - USER=conjur-install
-
-script: bash install.sh
