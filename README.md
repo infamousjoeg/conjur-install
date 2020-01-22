@@ -2,7 +2,7 @@
 
 Home of the script that lives at `https://cybr.rocks/conjur-install`!
 
-[![](https://github.com/infamousjoeg/conjur-install/workflows/CI/badge.svg)](https://github.com/infamousjoeg/conjur-action/actions?workflow=CI)
+[![](https://github.com/infamousjoeg/conjur-install/workflows/CI/badge.svg)](https://github.com/infamousjoeg/conjur-install/actions?workflow=CI)
 
 The purpose of the install script is for a convenience for quickly
 installing the latest Docker-CE releases, Docker Compose releases, and Conjur on the supported linux
