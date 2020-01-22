@@ -49,6 +49,7 @@ install_docker () {
         set -x
         curl -fsSL https://get.docker.com | sh
         sudo usermod -aG docker "${USER}"
+        newgrp docker
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
