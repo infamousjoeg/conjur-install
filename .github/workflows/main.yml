@@ -15,6 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run Conjur Install Script
-      run: ./install.sh
-      env:
-        USER: "runner"
+      run: ./tests/test_install.sh
