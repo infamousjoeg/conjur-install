@@ -1,7 +1,5 @@
 # infamousjoeg/conjur-install
 
-[![Build Status](https://travis-ci.com/infamousjoeg/conjur-install.svg?branch=master)](https://travis-ci.com/infamousjoeg/conjur-install)
-
 Home of the script that lives at `https://cybr.rocks/conjur-install`!
 
 The purpose of the install script is for a convenience for quickly
