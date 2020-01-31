@@ -57,3 +57,8 @@ me know. I currently do not offer a paid security bounty program, nor does Cyber
 
 infamousjoeg/conjur-install is licensed under the Apache License, Version 2.0.
 See [LICENSE](LICENSE) for the full license text.
+
+[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
+
+[buymeacoffee]: https://www.buymeacoffee.com/infamousjoeg
+[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png
