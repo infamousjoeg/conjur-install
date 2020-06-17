@@ -49,7 +49,6 @@ install_docker () {
         set -x
         curl -fsSL https://get.docker.com | sh
         sudo usermod -aG docker "${USER}"
-        newgrp docker
         set +x
         if [ "$(command -v yum)" ]; then
             set -x
@@ -94,6 +93,7 @@ generate_masterkey () {
 start_conjur () {
     # Spin up Docker containers for Conjur
     set -x
+    newgrp docker
     sudo docker-compose up -d
     set +x
     rm -rf docker-compose.yml
