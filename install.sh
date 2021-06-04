@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e pipefail
+set -eo pipefail
 
 # This script is meant for quick & easy install via:
 #   $ curl -fsSL https://cybr.rocks/conjur-install | bash -s
@@ -12,7 +12,9 @@ set -e pipefail
 #            $ ./conjur-install.sh
 
 main () {
-    update_yumapt
+    if [[ "$1" != "--no-update" ]]; then
+        update_yumapt
+    fi
     install_docker
     install_dockercompose
     download_conjur
