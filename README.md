@@ -48,7 +48,7 @@ curl -fsSL https://cybr.rocks/conjur-install -o conjur-install.sh
 #### Skip apt/yum update for faster deployment
 
 ```shell
-curl -fsSL https://cybr.rocks/conjur-install | 
+curl -fsSL https://cybr.rocks/conjur-install -o conjur-install.sh && ./conjur-install.sh --no-update
 ```
 
 ## Video of Usage
