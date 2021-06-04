@@ -1,4 +1,4 @@
-# infamousjoeg/conjur-install
+# infamousjoeg/conjur-install <!-- omit in toc -->
 
 Home of the script that lives at `https://cybr.rocks/conjur-install`!
 
@@ -13,31 +13,51 @@ instructions](https://conjur.org).
 
 This repository is solely maintained by Joe Garcia, CISSP. It is not officially supported by CyberArk.
 
+- [Usage](#usage)
+    - [From `https://cybr.rocks/conjur-install`](#from-httpscybrrocksconjur-install)
+    - [To review the output script first](#to-review-the-output-script-first)
+    - [From the source repo](#from-the-source-repo)
+    - [Skip apt/yum update for faster deployment](#skip-aptyum-update-for-faster-deployment)
+- [Video of Usage](#video-of-usage)
+  - [Ubuntu 18.04](#ubuntu-1804)
+  - [CentOS 7](#centos-7)
+- [Reporting Security Issues](#reporting-security-issues)
+- [Licensing](#licensing)
+
 ## Usage
 
-From `https://cybr.rocks/conjur-install`:
+#### From `https://cybr.rocks/conjur-install`
+
 ```shell
 curl -fsSL https://cybr.rocks/conjur-install | bash -s
 ```
 
-To review the output script first:
+#### To review the output script first
+
 ```shell
 curl -fsSL https://cybr.rocks/conjur-install -o conjur-install.sh
 ./conjur-install.sh
 ```
 
-From the source repo:
+#### From the source repo
+
 ```shell
 ./install.sh
 ```
 
-### Video of Usage
+#### Skip apt/yum update for faster deployment
 
-#### Ubuntu 18.04
+```shell
+curl -fsSL https://cybr.rocks/conjur-install | 
+```
+
+## Video of Usage
+
+### Ubuntu 18.04
 
 [![asciicast](https://asciinema.org/a/221614.svg)](https://asciinema.org/a/221614)
 
-#### CentOS 7
+### CentOS 7
 
 [![asciicast](https://asciinema.org/a/222131.svg)](https://asciinema.org/a/222131)
 
