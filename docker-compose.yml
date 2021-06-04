@@ -2,6 +2,8 @@ version: '2'
 services:
   database:
     image: postgres:9.3
+    volumes:
+      - conjur-data:/var/lib/postgresql/data
 
   conjur:
     image: cyberark/conjur
@@ -23,3 +25,6 @@ services:
       CONJUR_ACCOUNT:
       CONJUR_AUTHN_API_KEY:
       CONJUR_AUTHN_LOGIN: admin
+
+volumes:
+  conjur-data:
