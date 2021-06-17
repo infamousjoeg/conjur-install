@@ -21,7 +21,7 @@ services:
     entrypoint: sleep
     command: infinity
     environment:
-      CONJUR_APPLIANCE_URL: http://conjur
+      CONJUR_APPLIANCE_URL: "http://conjur:8080"
       CONJUR_ACCOUNT:
       CONJUR_AUTHN_API_KEY:
       CONJUR_AUTHN_LOGIN: admin
